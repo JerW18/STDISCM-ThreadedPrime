@@ -130,10 +130,18 @@
     <ClCompile Include="Prime.cpp" />
     <ClCompile Include="STDISCM-ThreadedPrime.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Variant1.cpp" />
+    <ClCompile Include="Variant2.cpp" />
+    <ClCompile Include="Variant3.cpp" />
+    <ClCompile Include="Variant4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Prime.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="Variant1.h" />
+    <ClInclude Include="Variant2.h" />
+    <ClInclude Include="Variant3.h" />
+    <ClInclude Include="Variant4.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

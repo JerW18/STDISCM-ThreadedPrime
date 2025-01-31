@@ -24,12 +24,36 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Variant1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Variant2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Variant3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Variant4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Prime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

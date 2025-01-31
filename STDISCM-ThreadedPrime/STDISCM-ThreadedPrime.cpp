@@ -2,41 +2,68 @@
 #include <thread>
 #include <vector>
 
-#include "Prime.h"
 #include "Time.h"
+#include "Variant1.h"
+#include "Variant2.h"
+#include "Variant3.h"
+#include "Variant4.h"
 
 using namespace std;
 
 int main()
 {
-	
-	Prime prime;
-	Time globalTime;
+    Time globalTime;
 
-	vector<thread> threads;
+    int threadCount = 4;
+    int primeNum = 2000;
+    int choice;
 
-	cout << globalTime.getTime() << ": Starting prime number search..." << endl << endl;
+    cout << "Choose a variant to run:\n";
+    cout << "1. Variant1\n";
+    cout << "2. Variant2\n";
+    cout << "3. Variant3\n";
+    cout << "Enter number of your choice: ";
 
-	int threadCount = 4;
-	int primeNum = 2000;
-	int rangeSize = primeNum / threadCount;
+    while (true) {
+        cin >> choice;
 
-	for (int i = 0; i < threadCount; i++)
-	{
-		int start = i * rangeSize + 1;
-		int end = (i == threadCount - 1) ? primeNum : (i + 1) * rangeSize;
+        if (cin.fail() || (choice <= 1 && choice >= 4)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid choice. Please enter a valid number: ";
+        }
+        else {
+            break;
+        }
+    }
 
-		threads.push_back(thread(&Prime::checkPrime, &prime, start, end, i));
-	}
+    cout << "\n" << globalTime.getTime() << ": Starting prime number search..." << endl << endl;
 
-	for (auto& t : threads) {
-		if (t.joinable()) {
-			t.join();
-		}
-	}
+    // Variant 1: The range of numbers is divided evenly among threads, and each thread checks for prime numbers and immediately prints them.
+    if (choice == 1) {
+        Variant1 variant1;
+        variant1.Run(threadCount, primeNum);
+    }
+    // Variant 2: The range of numbers is divided evenly among threads, and each thread checks for prime numbers and stores them in a map to be printed at the end.
+    else if (choice == 2) {
+        Variant2 variant2;
+        variant2.Run(threadCount, primeNum);
+    }
+	// Variant 3: The main program assigns all the thread to a number to check if it is prime or not and immediately prints the prime numbers.
+    else if (choice == 3) {
+        Variant3 variant3;
+        variant3.Run(threadCount, primeNum);
+    }
+    // Variant 3: The main program assigns all the thread to a number to check if it is prime or not and stores them in a map to be printed at the end.
+    else if (choice == 4) {
+        Variant4 variant4;
+        variant4.Run(threadCount, primeNum);
+    }
 
-	cout << "\n" << globalTime.getTime() << ": Prime number search complete." << endl;
+    cout << "\n" << globalTime.getTime() << ": Prime number search complete." << endl;
+    cout << "\nPress enter to end...";
+    cin.ignore();
+    cin.get();
 
-	cout << "\nPress enter to end...";
-	getchar();
+    return 0;
 }
