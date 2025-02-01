@@ -53,15 +53,17 @@ void Prime::checkPrimeStore(int start, int end, int thread, map<int, int>& prime
 }
 
 // Prime number checker algorithm for divisibility testing of individual numbers
-int Prime::isPrime(int n, int start, int step, atomic<bool>& isPrimeFlag) {
-    if (n <= 1) return false;
-
-    for (int i = start; i * i <= n; i += step) {
-        if (n % i == 0) {
-            isPrimeFlag = false;  // Mark number as non-prime
-            return false;
-        }
+void Prime::isPrime(int n, int start, int step, atomic<bool>& isPrimeFlag) {
+    if (n <= 1) {
+        isPrimeFlag = false;
+        return;
     }
 
-    return true;
+    for (int i = start; i * i <= n; i += step) {
+        if (!isPrimeFlag) return;
+        if (n % i == 0) {
+            isPrimeFlag = false;  // Mark number as non-prime
+            return;
+        }
+    }
 }
