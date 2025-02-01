@@ -60,7 +60,7 @@ void Prime::isPrime(int n, int start, int step, atomic<bool>& isPrimeFlag) {
     }
 
     for (int i = start; i * i <= n; i += step) {
-        if (!isPrimeFlag) return;
+        if (isPrimeFlag) return;
         if (n % i == 0) {
             isPrimeFlag = false;  // Mark number as non-prime
             return;

@@ -17,7 +17,7 @@ int main()
 
     int choice;
 
-    ifstream inputFile("config.txt"); // Replace with your filename
+    ifstream inputFile("config.txt");
     if (!inputFile) {
         std::cerr << "Error opening file!" << std::endl;
         return 1;
