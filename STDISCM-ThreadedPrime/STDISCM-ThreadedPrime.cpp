@@ -34,10 +34,10 @@ int main()
     inputFile.close();
 
     cout << "Choose a variant to run:\n";
-    cout << "1. Divided evenly among threads. Prints number immediately if prime.\n";
-    cout << "2. Divided evenly among threads. Prints result after all primes are found.\n";
-    cout << "3. All threads check one number. Prints number immediately if prime.\n";
-    cout << "4. All threads check one number. Prints result after all primes are found\n";
+    cout << "1. Divided evenly among threads. Prints number immediately if prime. (A1 B1)\n";
+    cout << "2. Divided evenly among threads. Prints result after all primes are found. (A1 B2)\n";
+    cout << "3. All threads check one number. Prints number immediately if prime. (A2 B1)\n";
+    cout << "4. All threads check one number. Prints result after all primes are found. (A2 B2)\n";
     cout << "Enter number of your choice: ";
 
     while (true) {
