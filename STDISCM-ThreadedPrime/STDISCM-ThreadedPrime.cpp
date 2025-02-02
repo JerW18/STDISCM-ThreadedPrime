@@ -37,7 +37,7 @@ int main()
     cout << "1. Divided evenly among threads. Prints number immediately if prime.\n";
     cout << "2. Divided evenly among threads. Prints result after all primes are found.\n";
     cout << "3. All threads check one number. Prints number immediately if prime.\n";
-    cout << "3. All threads check one number. Prints result after all primes are found\n";
+    cout << "4. All threads check one number. Prints result after all primes are found\n";
     cout << "Enter number of your choice: ";
 
     while (true) {
@@ -70,7 +70,7 @@ int main()
         Variant3 variant3;
         variant3.Run(threadCount, primeLimit);
     }
-    // Variant 3: The main program assigns all the thread to a number to check if it is prime or not and stores them in a map to be printed at the end.
+    // Variant 4: The main program assigns all the thread to a number to check if it is prime or not and stores them in a map to be printed at the end.
     else if (choice == 4) {
         Variant4 variant4;
         variant4.Run(threadCount, primeLimit);

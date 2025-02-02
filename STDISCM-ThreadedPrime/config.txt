@@ -1,2 +1,2 @@
 threadCount 4
-primeLimit 10000
+primeLimit 50

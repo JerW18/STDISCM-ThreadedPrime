@@ -32,6 +32,6 @@ void Variant2::Run(int threadCount, int primeNum)
 
     cout << "\nFinal List of Prime Numbers Found:\n";
     for (const auto& entry : primeMap) {
-        cout << "Prime: " << entry.first << " found by Thread: " << entry.second << endl;
+        cout << "Thread: " << entry.second << " found Prime: " << entry.first << endl;
     }
 }
