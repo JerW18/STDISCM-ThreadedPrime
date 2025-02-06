@@ -16,10 +16,20 @@ int main()
     Time globalTime;
 
     int choice;
+    bool cont = true;
 
+    // Open File
     ifstream inputFile("config.txt");
     if (!inputFile) {
-        std::cerr << "Error opening file!" << std::endl;
+        cout << "Error opening file!" << endl;
+        cont = false;
+    }
+
+    // End if file doesn't exist or error opening file
+    if (!cont) {
+        cout << "\nPress enter to exit...";
+        cin.get();
+
         return 1;
     }
 
@@ -27,12 +37,29 @@ int main()
 
     int threadCount = 0;
     int primeLimit = 0;
+    
+    // Get file contents
+    if (!(inputFile >> label1 >> threadCount) || threadCount <= 0) {
+        cout << "Invalid input for thread count! Must be a positive integer." << endl;
+        cont = false;
+    }
 
-    inputFile >> label1 >> threadCount;
-    inputFile >> label2 >> primeLimit;
+    if (!(inputFile >> label2 >> primeLimit) || primeLimit <= 0) {
+        cout << "Invalid input for prime limit! Must be a positive integer." << endl;
+        cont = false;
+    }
 
     inputFile.close();
 
+    // End if negative inputs
+    if (!cont) {
+        cout << "\nPress enter to exit...";
+        cin.get();
+
+        return 1;
+    }
+
+    // Start Main Program
     cout << "Choose a variant to run:\n";
     cout << "1. Divided evenly among threads. Prints number immediately if prime. (A1 B1)\n";
     cout << "2. Divided evenly among threads. Prints result after all primes are found. (A1 B2)\n";
@@ -77,7 +104,8 @@ int main()
     }
 
     cout << "\n" << globalTime.getTime() << ": Prime number search complete." << endl;
-    cout << "\nPress enter to end...";
+
+    cout << "\nPress enter to exit...";
     cin.ignore();
     cin.get();
 
