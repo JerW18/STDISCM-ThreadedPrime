@@ -14,12 +14,25 @@
 
 using namespace std;
 
-bool isValidPositiveInteger(const string& str) {
+bool isValidInteger(const string& str, int& outValue) {
     if (str.empty()) return false;
     for (char ch : str) {
-        if (!isdigit(ch)) return false; // Ensure all characters are digits
+        if (!isdigit(ch)) return false;
     }
-    return true;
+
+    try
+    {
+        long long temp = stoll(str); // Convert to long long to check range
+        if (temp > numeric_limits<int>::max() || temp <= 0) {
+            return false;
+        }
+        outValue = static_cast<int>(temp);
+        return true;
+    }
+    catch (const std::exception&)
+    {
+        return false;
+    }
 }
 
 int main()
@@ -49,20 +62,14 @@ int main()
     int threadCount, primeLimit;
     
     // Get file contents
-    if (!(inputFile >> label1 >> threadCountStr) || !isValidPositiveInteger(threadCountStr)) {
-        cout << "Invalid input for thread count! Must be a positive integer." << endl;
+    if (!(inputFile >> label1 >> threadCountStr) || !isValidInteger(threadCountStr, threadCount)) {
+        cout << "Invalid input for thread count! Must be a positive integer within range." << endl;
         cont = false;
-	}
-	else {
-		threadCount = stoi(threadCountStr);
 	}
 
-    if (!(inputFile >> label2 >> primeLimitStr) || !isValidPositiveInteger(primeLimitStr)) {
-        cout << "Invalid input for prime limit! Must be a positive integer." << endl;
+    if (!(inputFile >> label2 >> primeLimitStr) || !isValidInteger(primeLimitStr, primeLimit)) {
+        cout << "Invalid input for prime limit! Must be a positive integer within range." << endl;
         cont = false;
-	}
-	else {
-		primeLimit = stoi(primeLimitStr);
 	}
 
     inputFile.close();
