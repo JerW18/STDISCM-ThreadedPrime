@@ -2,6 +2,8 @@
 #include <thread>
 #include <vector>
 #include <fstream>
+#include <cctype>
+#include <string>
 
 #include "Time.h"
 #include "Variant1.h"
@@ -9,7 +11,16 @@
 #include "Variant3.h"
 #include "Variant4.h"
 
+
 using namespace std;
+
+bool isValidPositiveInteger(const string& str) {
+    if (str.empty()) return false;
+    for (char ch : str) {
+        if (!isdigit(ch)) return false; // Ensure all characters are digits
+    }
+    return true;
+}
 
 int main()
 {
@@ -33,25 +44,30 @@ int main()
         return 1;
     }
 
-    string label1, label2;
+    string label1, label2, threadCountStr, primeLimitStr;
 
-    int threadCount = 0;
-    int primeLimit = 0;
+    int threadCount, primeLimit;
     
     // Get file contents
-    if (!(inputFile >> label1 >> threadCount) || threadCount <= 0) {
+    if (!(inputFile >> label1 >> threadCountStr) || !isValidPositiveInteger(threadCountStr)) {
         cout << "Invalid input for thread count! Must be a positive integer." << endl;
         cont = false;
-    }
+	}
+	else {
+		threadCount = stoi(threadCountStr);
+	}
 
-    if (!(inputFile >> label2 >> primeLimit) || primeLimit <= 0) {
+    if (!(inputFile >> label2 >> primeLimitStr) || !isValidPositiveInteger(primeLimitStr)) {
         cout << "Invalid input for prime limit! Must be a positive integer." << endl;
         cont = false;
-    }
+	}
+	else {
+		primeLimit = stoi(primeLimitStr);
+	}
 
     inputFile.close();
 
-    // End if negative inputs
+    // End if invalid inputs
     if (!cont) {
         cout << "\nPress enter to exit...";
         cin.get();
