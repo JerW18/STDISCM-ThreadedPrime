@@ -16,6 +16,7 @@ void Variant3::Run(int threadCount, int primeNum)
     Time globalTime;
 
     atomic<int> currentNumber(2);
+    int threadsToMake = threadCount;
 
     auto worker = [&]() {
         while (true) {
@@ -26,7 +27,16 @@ void Variant3::Run(int threadCount, int primeNum)
             int foundByThread = -1;
 
             vector<thread> checkThreads;
-            for (int i = 0; i < threadCount; i++) {
+
+            if (threadCount > (numToCheck / 2)) {
+                threadsToMake = numToCheck / 2;
+            }
+            else
+            {
+                threadsToMake = threadCount;
+            }
+
+            for (int i = 0; i < threadsToMake; i++) {
                 checkThreads.emplace_back(&Prime::isPrime, &prime, numToCheck, 2 + i, threadCount, i, ref(isPrimeFlag), ref(foundByThread));
             }
 
