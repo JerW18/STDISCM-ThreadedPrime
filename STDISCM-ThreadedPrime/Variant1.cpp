@@ -11,6 +11,11 @@ void Variant1::Run(int threadCount, int primeNum)
 	vector<thread> threads;
 	mutex coutMutex;
 
+	if (threadCount > primeNum)
+	{
+		threadCount = primeNum;
+	}
+
 	int rangeSize = primeNum / threadCount;
 
 	for (int i = 0; i < threadCount; i++)

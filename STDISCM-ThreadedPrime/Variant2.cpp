@@ -14,6 +14,11 @@ void Variant2::Run(int threadCount, int primeNum)
     map<int, int> primeMap; 
     mutex mapMutex;         
 
+	if (threadCount > primeNum)
+	{
+		threadCount = primeNum;
+	}
+
     int rangeSize = primeNum / threadCount;
 
     for (int i = 0; i < threadCount; i++)
